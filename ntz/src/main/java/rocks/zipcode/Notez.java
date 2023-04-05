@@ -48,14 +48,27 @@ public final class Notez {
             if (argv[0].equals("-r")) {
                 System.out.println("-r ran");
                 ntzEngine.addToCategory("General", argv);
-            } else if(argv[0].equals("-c"));
-            ntzEngine.addToCategory(argv[1],argv);
+            } else if (argv[0].equals("-c")){
+                ntzEngine.addToCategory(argv[1], argv);
+            }else if (argv[0].equals("-f")){
+                ntzEngine.forgetNote(argv[1],Integer.parseInt(argv[2])-1);
             }
+        }
+
             ntzEngine.saveDatabase();
 
               // without having to spend lots of time messing with command line arguments.
         }
-        /*
+
+    private void forgetNote(String categeory, int index) {
+        if(filemap.containsKey((categeory))){
+            filemap.get(categeory).remove(index);
+        if(filemap.get(categeory).size() == 0){
+            filemap.remove(categeory);
+        }
+        }
+    }
+    /*
          * what other method calls do you need here to implement the other commands??
          */
 

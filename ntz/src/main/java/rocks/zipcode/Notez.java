@@ -50,10 +50,12 @@ public final class Notez {
                 ntzEngine.addToCategory("General", argv);
             } else if (argv[0].equals("-c")){
                 ntzEngine.addToCategory(argv[1], argv);
-            }else if (argv[0].equals("-f")){
-                ntzEngine.forgetNote(argv[1],Integer.parseInt(argv[2])-1);
+            }else if (argv[0].equals("-f")) {
+                ntzEngine.forgetNote(argv[1], Integer.parseInt(argv[2]) - 1);
+            } else if(argv[0].equals("-e")){
+                    ntzEngine.editNote(argv[1],Integer.parseInt(argv[2]) -1, argv[3]);
+                }
             }
-        }
 
             ntzEngine.saveDatabase();
 
@@ -66,13 +68,19 @@ public final class Notez {
         if(filemap.get(categeory).size() == 0){
             filemap.remove(categeory);
         }
+
         }
-    }
+        }
+
     /*
          * what other method calls do you need here to implement the other commands??
          */
 
-
+    private void editNote(String category, int index, String newMsg){
+        if(filemap.containsKey(category)) {
+            filemap.get(category).set(index, newMsg);
+        }
+    }
 
 
     private void addToCategory(String categeory, String[] argv) {
